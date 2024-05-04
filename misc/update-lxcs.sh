@@ -64,7 +64,7 @@ function update_container() {
     echo -e "${BL}[Info]${GN} Updating ${BL}$container${CL} : ${GN}$name${CL} - ${YW}[No disk info for ${os}]${CL}\n"
   fi
   case "$os" in
-  alpine) pct exec "$container" -- ash -c "apk update && apk upgrade" ;;
+  alpine) pct exec "$container" -- bash -c "apk update && apk upgrade" ;;
   archlinux) pct exec "$container" -- bash -c "pacman -Syyu --noconfirm" ;;
   fedora | rocky | centos | alma) pct exec "$container" -- bash -c "dnf -y update && dnf -y upgrade" ;;
   ubuntu | debian | devuan) pct exec "$container" -- bash -c "apt-get update 2>/dev/null | grep 'packages.*upgraded'; apt list --upgradable && apt-get -yq dist-upgrade 2>&1" ;;
